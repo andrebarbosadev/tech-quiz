@@ -27,7 +27,8 @@
       }
     ],
     "external": [
-      ""
+      "https://aluraquiz-css.omariosouto.vercel.app/",
+      "https://tech-quiz.andrebarbosafoz.vercel.app/"
     ],
     "theme": {
       "colors": {
