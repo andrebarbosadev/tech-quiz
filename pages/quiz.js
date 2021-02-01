@@ -5,7 +5,7 @@ import Widget from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizContainer from '../src/components/QuizContainer';
-import Button from '../src/components/Button';n
+import Button from '../src/components/Button';
 import AlternativesForm from '../src/components/AlternativesForm';
 
 function ResultWidget({ results }) {
@@ -18,7 +18,7 @@ function ResultWidget({ results }) {
         <Widget.Header>
             Resultados
         </Widget.Header>
-  
+
         <Widget.Content>
           <p>Você acertou {results.reduce((somatoria, resultAtual) => {
               const isAcerto = resultAtual === true;
@@ -28,7 +28,7 @@ function ResultWidget({ results }) {
               return somatoria;
           }, 0)} perguntas!</p>
           <ul>
-              {results.map((result, index) => 
+              {results.map((result, index) =>
                 <li key={index}>
                     #{index + 1} Resultado:
                     { result === true ?
@@ -36,7 +36,7 @@ function ResultWidget({ results }) {
                         'Errou'}
                 </li>
               )}
-              
+
           </ul>
         </Widget.Content>
       </Widget>
@@ -111,26 +111,26 @@ function QuestionWidget({
                 setIsQuestionSubmited(false);
                 setSelectedAlternative(undefined);
             }, 3 * 1000);
-            
+
           }}
         >
-          {question.alternatives.map((alternative, anternativeIndex) => {
-            const alternativeId = `alternative__${anternativeIndex}`;
-            const selectedAlternativeStatus = (isCorrect) ? 'SUCCESS' : 'ERROR';
-            const isSelected = selectedAlternativeStatus === alternativeIndex;
+          {question.alternatives.map((alternative, alternativeIndex) => {
+            const alternativeId = `alternative__${alternativeIndex}`;
+            const selectedAlternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+            const isSelected = selectedAlternative === alternativeIndex;
             return (
               <Widget.Topic
                 as="label"
-                htmlFor={alternativeId}
                 key={alternativeId}
-                data-status={selectedAlternativeStatus}
+                htmlFor={alternativeId}
+                data-status={isQuestionSubmited && selectedAlternativeStatus}
                 data-selected={isSelected}
               >
                 <input
                   style={{ display: 'none' }}
                   id={alternativeId}
                   name={questionId}
-                  onChange={() => setSelectedAlternative(anternativeIndex)}
+                  onChange={() => setSelectedAlternative(alternativeIndex)}
                   type="radio"
                 />
                 {alternative}
