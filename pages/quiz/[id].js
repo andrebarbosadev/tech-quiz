@@ -1,20 +1,26 @@
 import React from 'react';
+import QuizScreen from '../../src/screens/Quiz';
+import { ThemeProvider } from 'styled-components';
 
-export default function QuizDaGaleraPage(props) {
+
+export default function QuizDaGaleraPage({dbExterno}) {
   return (
-    <div>
-      Desafio da próxima aula junto com animações.
-      <pre>
-        {JSON.stringify(props.dbExterno)}
-      </pre>
-    </div>
+    <ThemeProvider theme={dbExterno.theme}>
+      <div>
+        Desafio da próxima aula junto com animações.
+        <QuizScreen externalQuestions={dbExterno.questions} externalBg={dbExterno.bg} />
+        <pre>
+          {JSON.stringify(dbExterno)}
+        </pre>
+      </div>
+    </ThemeProvider>
   );
 }
 
 export async function getServerSideProps(context) {
   console.log('Infos que o NEXT provê:', context.query.id);
-
-  const dbExterno = await fetch('https://aluraquiz-css.omariosouto.vercel.app/api/db')
+  const [projectName, gitUser] = context.query.id.split('___');
+  const dbExterno = await fetch(`https://${projectName}.${gitUser}.vercel.app/api/db`)
   .then((respostaDoServer) => {
     if(respostaDoServer.ok) {
       return respostaDoServer.json();

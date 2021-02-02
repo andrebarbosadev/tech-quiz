@@ -3,7 +3,8 @@
 import styled from 'styled-components';
 import React from 'react';
 import Head from 'next/head';
-import { useRouter, useState } from 'next/router';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
 import Footer from '../src/components/Footer';
@@ -13,6 +14,7 @@ import QuizLogo from '../src/components/QuizLogo';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
 import QuizContainer from '../src/components/QuizContainer';
+import Link from '../src/components/Link';
 
 export default function Home() {
   const router = useRouter();
@@ -25,7 +27,15 @@ export default function Home() {
       </Head>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+          variants={{
+            show: { opacity: 1 },
+            hidden: { opacity: 0},
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             Quiz Tech!
           </Widget.Header>
@@ -47,7 +57,16 @@ export default function Home() {
             </form>
           </Widget.Content>
         </Widget>
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          variants={{
+            show: { opacity: 1 },
+            hidden: { opacity: 0},
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Content>
             <h1>Quizes da Galera</h1>
             <ul>
@@ -59,7 +78,9 @@ export default function Home() {
 
               return (
                 <li key={linkExterno}>
-                  <Widget.Topic href={linkExterno}>
+                  <Widget.Topic 
+                    as={Link}
+                    href={`/quiz/${projectName}___${gitUser}`}>
                     {gitUser}/{projectName}
                   </Widget.Topic>
                 </li>
