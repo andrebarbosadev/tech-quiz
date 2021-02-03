@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
     return respostaConvertidaEmObjeto;
   })
   .catch((error) => {
-    console.log(error);
+    console.log("Erro recuperando dados de quiz!");
   })
 
   console.log(dbExterno);

@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import db from '../../../db.json';
 import Widget from '../../../src/components/Widget';
 import QuizLogo from '../../../src/components/QuizLogo';
 import QuizBackground from '../../../src/components/QuizBackground';
 import QuizContainer from '../../../src/components/QuizContainer';
-import Button from '../../../src/components/Button';n
+import Button from '../../../src/components/Button';
 import AlternativesForm from '../../../src/components/AlternativesForm';
 import BackLinkArrow from '../../components/BackLinkArrow';
 
@@ -115,8 +114,8 @@ function QuestionWidget({
             
           }}
         >
-          {question.alternatives.map((alternative, anternativeIndex) => {
-            const alternativeId = `alternative__${anternativeIndex}`;
+          {question.alternatives.map((alternative, alternativeIndex) => {
+            const alternativeId = `alternative__${alternativeIndex}`;
             const selectedAlternativeStatus = (isCorrect) ? 'SUCCESS' : 'ERROR';
             const isSelected = selectedAlternativeStatus === alternativeIndex;
             return (
@@ -131,7 +130,7 @@ function QuestionWidget({
                   style={{ display: 'none' }}
                   id={alternativeId}
                   name={questionId}
-                  onChange={() => setSelectedAlternative(anternativeIndex)}
+                  onChange={() => setSelectedAlternative(alternativeIndex)}
                   type="radio"
                 />
                 {alternative}
